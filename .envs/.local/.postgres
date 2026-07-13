@@ -1,0 +1,7 @@
+# PostgreSQL
+# ------------------------------------------------------------------------------
+POSTGRES_HOST=postgres
+POSTGRES_PORT=5432
+POSTGRES_DB=studious_octo_goggles
+POSTGRES_USER=NDafHyDFJQjutgLIuvgCTAvGvVAOMsfw
+POSTGRES_PASSWORD=9mztauvDErLQhMdEHxbES9bGHvHjNJwd16EkupwAHuSj83y7q91dv63Mzh8uzCPW
