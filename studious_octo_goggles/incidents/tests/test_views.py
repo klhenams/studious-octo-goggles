@@ -1,10 +1,12 @@
 from __future__ import annotations
 
 import pytest
+from django.core import mail
 from django.urls import reverse
 from rest_framework.test import APIRequestFactory
 from rest_framework.test import force_authenticate
 
+from studious_octo_goggles.incidents.tests.factories import IncidentReportFactory
 from studious_octo_goggles.incidents.views import IncidentReportViewSet
 from studious_octo_goggles.users.tests.factories import UserFactory
 
@@ -45,4 +47,21 @@ def test_incident_create_view_broadcasts_channels() -> None:
     assert response.data["title"] == payload["title"]
     assert response.data["status"] == "open"
     assert response.data["channels"] == payload["channels"]
+    assert len(response.data["broadcast_results"]) == 2  # noqa: PLR2004
+    assert len(mail.outbox) == 1
+
+
+def test_incident_broadcast_action_returns_results() -> None:
+    user = UserFactory.create()
+    incident = IncidentReportFactory.create(channels=["console", "email"])
+    factory = APIRequestFactory()
+    request = factory.post(
+        reverse("api:incidentreport-broadcast", kwargs={"pk": incident.pk}),
+    )
+    force_authenticate(request, user=user)
+
+    view = IncidentReportViewSet.as_view({"post": "broadcast"})
+    response = view(request, pk=incident.pk)
+
+    assert response.status_code == 200  # noqa: PLR2004
     assert len(response.data["broadcast_results"]) == 2  # noqa: PLR2004

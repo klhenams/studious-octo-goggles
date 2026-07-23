@@ -12,3 +12,14 @@ def test_incident_list() -> None:
 def test_incident_detail() -> None:
     assert reverse("api:incidentreport-detail", kwargs={"pk": 1}) == "/api/incidents/1/"
     assert resolve("/api/incidents/1/").view_name == "api:incidentreport-detail"
+
+
+def test_incident_broadcast() -> None:
+    assert (
+        reverse("api:incidentreport-broadcast", kwargs={"pk": 1})
+        == "/api/incidents/1/broadcast/"
+    )
+    assert (
+        resolve("/api/incidents/1/broadcast/").view_name
+        == "api:incidentreport-broadcast"
+    )
