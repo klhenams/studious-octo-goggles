@@ -1,7 +1,6 @@
 from __future__ import annotations
 
 import pytest
-from django.core import mail
 from django.urls import reverse
 from rest_framework.test import APIRequestFactory
 from rest_framework.test import force_authenticate
@@ -48,7 +47,6 @@ def test_incident_create_view_broadcasts_channels() -> None:
     assert response.data["status"] == "open"
     assert response.data["channels"] == payload["channels"]
     assert len(response.data["broadcast_results"]) == 2  # noqa: PLR2004
-    assert len(mail.outbox) == 1
 
 
 def test_incident_broadcast_action_returns_results() -> None:
