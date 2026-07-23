@@ -86,6 +86,7 @@ THIRD_PARTY_APPS = [
 
 LOCAL_APPS = [
     "studious_octo_goggles.users",
+    "studious_octo_goggles.incidents",
     # Your stuff: custom apps go here
 ]
 # https://docs.djangoproject.com/en/dev/ref/settings/#installed-apps
@@ -235,6 +236,8 @@ ADMIN_URL = "admin/"
 ADMINS = ['"Anthony Addae" <anthony-addae@example.com>']
 # https://docs.djangoproject.com/en/dev/ref/settings/#managers
 MANAGERS = ADMINS
+# Incident alert email recipients override for incident broadcasts.
+INCIDENT_ALERT_RECIPIENTS = env.list("INCIDENT_ALERT_RECIPIENTS", default=[])
 # https://cookiecutter-django.readthedocs.io/en/latest/settings.html#other-environment-settings
 # Force the `admin` sign in process to go through the `django-allauth` workflow
 DJANGO_ADMIN_FORCE_ALLAUTH = env.bool("DJANGO_ADMIN_FORCE_ALLAUTH", default=False)
@@ -336,6 +339,8 @@ REST_FRAMEWORK = {
         "rest_framework.authentication.TokenAuthentication",
     ),
     "DEFAULT_PERMISSION_CLASSES": ("rest_framework.permissions.IsAuthenticated",),
+    "DEFAULT_PAGINATION_CLASS": "rest_framework.pagination.PageNumberPagination",
+    "PAGE_SIZE": 20,
     "DEFAULT_SCHEMA_CLASS": "drf_spectacular.openapi.AutoSchema",
 }
 
@@ -347,7 +352,7 @@ CORS_URLS_REGEX = r"^/api/.*$"
 SPECTACULAR_SETTINGS = {
     "TITLE": "studious-octo-goggles API",
     "DESCRIPTION": "Documentation of API endpoints of studious-octo-goggles",
-    "VERSION": "1.0.0",
+    "VERSION": "0.2.0",
     "SERVE_PERMISSIONS": ["rest_framework.permissions.IsAdminUser"],
     "SCHEMA_PATH_PREFIX": "/api/",
 }
