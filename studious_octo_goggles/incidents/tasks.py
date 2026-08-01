@@ -7,8 +7,6 @@ from celery import shared_task
 from django.conf import settings
 from django.core.mail import send_mail
 
-from studious_octo_goggles.incidents.models import IncidentReport
-
 logger = logging.getLogger(__name__)
 
 
@@ -16,24 +14,10 @@ logger = logging.getLogger(__name__)
 def send_incident_email_task(
     incident_id: int,
     recipient_list: list[str],
+    message: dict[str, str],
 ) -> dict[str, Any]:
-    try:
-        incident = IncidentReport.objects.get(pk=incident_id)
-    except IncidentReport.DoesNotExist:
-        return {
-            "status": "failed",
-            "message": "incident not found",
-            "incident_id": incident_id,
-        }
-
-    subject = f"[Incident Alert] {incident.title}"
-    body = (
-        f"Title: {incident.title}\n"
-        f"Severity: {incident.severity}\n"
-        f"Service: {incident.service_name}\n"
-        f"Status: {incident.status}\n\n"
-        f"Description: {incident.description}"
-    )
+    subject = message.get("subject", f"[Incident Alert] {incident_id}")
+    body = message.get("body", "")
 
     sender = getattr(settings, "DEFAULT_FROM_EMAIL", None) or getattr(
         settings,
