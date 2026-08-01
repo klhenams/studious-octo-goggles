@@ -12,3 +12,4 @@ REDIS_URL=redis://redis:6379/0
 # Flower
 CELERY_FLOWER_USER=PPMhvvFhajYZWmSAtGOthAHhIAsPXNjF
 CELERY_FLOWER_PASSWORD=sN7nouQ7UjrmrdC48hmKoYEDmXSizjEx0qaezDOlZYNm6LPvV2wOycu9t6TnAAg3
+DATABASE_URL=postgres://NDafHyDFJQjutgLIuvgCTAvGvVAOMsfw:9mztauvDErLQhMdEHxbES9bGHvHjNJwd16EkupwAHuSj83y7q91dv63Mzh8uzCPW@postgres:5432/studious_octo_goggles
