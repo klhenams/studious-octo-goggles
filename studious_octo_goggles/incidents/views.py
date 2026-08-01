@@ -1,10 +1,12 @@
 from __future__ import annotations
 
+import django_filters
 from rest_framework import status
 from rest_framework import viewsets
 from rest_framework.decorators import action
 from rest_framework.response import Response
 
+from .filters import IncidentReportFilter
 from .models import IncidentReport
 from .serializers import IncidentReportSerializer
 from .services import broadcast_incident
@@ -13,6 +15,8 @@ from .services import broadcast_incident
 class IncidentReportViewSet(viewsets.ModelViewSet):
     queryset = IncidentReport.objects.all()
     serializer_class = IncidentReportSerializer
+    filterset_class = IncidentReportFilter
+    filter_backends = (django_filters.rest_framework.DjangoFilterBackend,)
 
     def perform_create(self, serializer):
         serializer.save()
