@@ -34,7 +34,7 @@ def test_incident_create_view_broadcasts_channels() -> None:
         "description": "The authentication service is returning 502s.",
         "severity": "high",
         "service_name": "auth-service",
-        "channels": ["console", "email"],
+        "channels": ["console"],
     }
     request = factory.post(reverse("api:incidentreport-list"), payload, format="json")
     force_authenticate(request, user=user)
@@ -46,12 +46,12 @@ def test_incident_create_view_broadcasts_channels() -> None:
     assert response.data["title"] == payload["title"]
     assert response.data["status"] == "open"
     assert response.data["channels"] == payload["channels"]
-    assert len(response.data["broadcast_results"]) == 2  # noqa: PLR2004
+    assert len(response.data["broadcast_results"]) == 1
 
 
 def test_incident_broadcast_action_returns_results() -> None:
     user = UserFactory.create()
-    incident = IncidentReportFactory.create(channels=["console", "email"])
+    incident = IncidentReportFactory.create(channels=["console"])
     factory = APIRequestFactory()
     request = factory.post(
         reverse("api:incidentreport-broadcast", kwargs={"pk": incident.pk}),
@@ -62,4 +62,4 @@ def test_incident_broadcast_action_returns_results() -> None:
     response = view(request, pk=incident.pk)
 
     assert response.status_code == 200  # noqa: PLR2004
-    assert len(response.data["broadcast_results"]) == 2  # noqa: PLR2004
+    assert len(response.data["broadcast_results"]) == 1

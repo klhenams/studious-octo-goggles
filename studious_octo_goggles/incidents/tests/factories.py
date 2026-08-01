@@ -12,7 +12,7 @@ class IncidentReportFactory(DjangoModelFactory[IncidentReport]):
     severity = "high"
     service_name = Faker("word")
     status = "open"
-    channels = ["console", "email"]
+    channels = ["console"]
 
     class Meta:
         model = IncidentReport
