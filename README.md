@@ -71,7 +71,15 @@ If you need access to the Django admin site:
 docker compose -f docker-compose.local.yml run --rm django python manage.py createsuperuser
 ```
 
-### 7. Access the Application
+### 7. Load Incident Report Fixtures (Optional)
+
+A sample fixture set with 15 incident reports is available for local development:
+
+```bash
+docker compose -f docker-compose.local.yml run --rm django python manage.py loaddata incident_reports
+```
+
+### 8. Access the Application
 
 Once the containers are running, open:
 

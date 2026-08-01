@@ -1,0 +1,269 @@
+[
+  {
+    "model": "incidents.incidentreport",
+    "pk": 1,
+    "fields": {
+      "title": "API latency spike",
+      "description": "The public API is returning elevated response times during peak traffic.",
+      "severity": "high",
+      "service_name": "api-gateway",
+      "status": "open",
+      "channels": ["console", "email"],
+      "created_at": "2026-07-01T09:00:00Z",
+      "updated_at": "2026-07-01T09:15:00Z",
+      "broadcast_results": [
+        {"channel": "console", "status": "sent", "message": "logged to console"},
+        {"channel": "email", "status": "queued", "message": "email notification queued"}
+      ]
+    }
+  },
+  {
+    "model": "incidents.incidentreport",
+    "pk": 2,
+    "fields": {
+      "title": "Authentication service outage",
+      "description": "Sign-in requests are failing with intermittent 502 responses.",
+      "severity": "critical",
+      "service_name": "auth-service",
+      "status": "acknowledged",
+      "channels": ["console", "email", "sms"],
+      "created_at": "2026-07-02T08:30:00Z",
+      "updated_at": "2026-07-02T08:45:00Z",
+      "broadcast_results": [
+        {"channel": "console", "status": "sent", "message": "logged to console"},
+        {"channel": "email", "status": "queued", "message": "email notification queued"},
+        {"channel": "sms", "status": "sent", "message": "sms notification queued"}
+      ]
+    }
+  },
+  {
+    "model": "incidents.incidentreport",
+    "pk": 3,
+    "fields": {
+      "title": "Database connection pool exhausted",
+      "description": "The primary database is hitting its connection pool limit.",
+      "severity": "high",
+      "service_name": "postgres",
+      "status": "open",
+      "channels": ["console"],
+      "created_at": "2026-07-03T10:00:00Z",
+      "updated_at": "2026-07-03T10:10:00Z",
+      "broadcast_results": [
+        {"channel": "console", "status": "sent", "message": "logged to console"}
+      ]
+    }
+  },
+  {
+    "model": "incidents.incidentreport",
+    "pk": 4,
+    "fields": {
+      "title": "Webhook delivery backlog",
+      "description": "Outbound webhook deliveries are delayed by several minutes.",
+      "severity": "medium",
+      "service_name": "webhooks",
+      "status": "resolved",
+      "channels": ["email"],
+      "created_at": "2026-07-04T11:15:00Z",
+      "updated_at": "2026-07-04T11:30:00Z",
+      "broadcast_results": [
+        {"channel": "email", "status": "queued", "message": "email notification queued"}
+      ]
+    }
+  },
+  {
+    "model": "incidents.incidentreport",
+    "pk": 5,
+    "fields": {
+      "title": "Search indexing delay",
+      "description": "Search documents are being indexed with a significant backlog.",
+      "severity": "medium",
+      "service_name": "search",
+      "status": "acknowledged",
+      "channels": ["console", "email"],
+      "created_at": "2026-07-05T09:20:00Z",
+      "updated_at": "2026-07-05T09:35:00Z",
+      "broadcast_results": [
+        {"channel": "console", "status": "sent", "message": "logged to console"},
+        {"channel": "email", "status": "queued", "message": "email notification queued"}
+      ]
+    }
+  },
+  {
+    "model": "incidents.incidentreport",
+    "pk": 6,
+    "fields": {
+      "title": "File upload timeouts",
+      "description": "Large file uploads are timing out for some tenants.",
+      "severity": "high",
+      "service_name": "storage",
+      "status": "open",
+      "channels": ["console", "sms"],
+      "created_at": "2026-07-06T12:40:00Z",
+      "updated_at": "2026-07-06T12:50:00Z",
+      "broadcast_results": [
+        {"channel": "console", "status": "sent", "message": "logged to console"},
+        {"channel": "sms", "status": "sent", "message": "sms notification queued"}
+      ]
+    }
+  },
+  {
+    "model": "incidents.incidentreport",
+    "pk": 7,
+    "fields": {
+      "title": "Billing worker retry storm",
+      "description": "Background billing jobs are retrying at a much higher rate than normal.",
+      "severity": "critical",
+      "service_name": "billing-worker",
+      "status": "open",
+      "channels": ["console", "email"],
+      "created_at": "2026-07-07T13:55:00Z",
+      "updated_at": "2026-07-07T14:00:00Z",
+      "broadcast_results": [
+        {"channel": "console", "status": "sent", "message": "logged to console"},
+        {"channel": "email", "status": "queued", "message": "email notification queued"}
+      ]
+    }
+  },
+  {
+    "model": "incidents.incidentreport",
+    "pk": 8,
+    "fields": {
+      "title": "Monitoring alert ingestion lag",
+      "description": "New monitoring alerts are delayed in ingestion by several minutes.",
+      "severity": "low",
+      "service_name": "monitoring",
+      "status": "resolved",
+      "channels": ["console"],
+      "created_at": "2026-07-08T14:10:00Z",
+      "updated_at": "2026-07-08T14:20:00Z",
+      "broadcast_results": [
+        {"channel": "console", "status": "sent", "message": "logged to console"}
+      ]
+    }
+  },
+  {
+    "model": "incidents.incidentreport",
+    "pk": 9,
+    "fields": {
+      "title": "Email delivery delay",
+      "description": "Transactional emails are taking longer than expected to be delivered.",
+      "severity": "medium",
+      "service_name": "mailer",
+      "status": "acknowledged",
+      "channels": ["email"],
+      "created_at": "2026-07-09T15:25:00Z",
+      "updated_at": "2026-07-09T15:40:00Z",
+      "broadcast_results": [
+        {"channel": "email", "status": "queued", "message": "email notification queued"}
+      ]
+    }
+  },
+  {
+    "model": "incidents.incidentreport",
+    "pk": 10,
+    "fields": {
+      "title": "Notification fan-out slowdown",
+      "description": "Notification fan-out is running slower than expected for mobile clients.",
+      "severity": "high",
+      "service_name": "notifications",
+      "status": "open",
+      "channels": ["console", "email", "sms"],
+      "created_at": "2026-07-10T16:30:00Z",
+      "updated_at": "2026-07-10T16:45:00Z",
+      "broadcast_results": [
+        {"channel": "console", "status": "sent", "message": "logged to console"},
+        {"channel": "email", "status": "queued", "message": "email notification queued"},
+        {"channel": "sms", "status": "sent", "message": "sms notification queued"}
+      ]
+    }
+  },
+  {
+    "model": "incidents.incidentreport",
+    "pk": 11,
+    "fields": {
+      "title": "Dashboard metrics missing",
+      "description": "Some dashboard metrics are missing from the reporting dataset.",
+      "severity": "medium",
+      "service_name": "analytics",
+      "status": "resolved",
+      "channels": ["console"],
+      "created_at": "2026-07-11T17:50:00Z",
+      "updated_at": "2026-07-11T18:00:00Z",
+      "broadcast_results": [
+        {"channel": "console", "status": "sent", "message": "logged to console"}
+      ]
+    }
+  },
+  {
+    "model": "incidents.incidentreport",
+    "pk": 12,
+    "fields": {
+      "title": "Cache hit rate drop",
+      "description": "The cache hit rate has dropped sharply after a deployment.",
+      "severity": "high",
+      "service_name": "redis",
+      "status": "acknowledged",
+      "channels": ["console", "email"],
+      "created_at": "2026-07-12T18:05:00Z",
+      "updated_at": "2026-07-12T18:15:00Z",
+      "broadcast_results": [
+        {"channel": "console", "status": "sent", "message": "logged to console"},
+        {"channel": "email", "status": "queued", "message": "email notification queued"}
+      ]
+    }
+  },
+  {
+    "model": "incidents.incidentreport",
+    "pk": 13,
+    "fields": {
+      "title": "Support portal slow",
+      "description": "Customers are seeing slower load times on the support portal.",
+      "severity": "low",
+      "service_name": "support-portal",
+      "status": "resolved",
+      "channels": ["email"],
+      "created_at": "2026-07-13T19:20:00Z",
+      "updated_at": "2026-07-13T19:25:00Z",
+      "broadcast_results": [
+        {"channel": "email", "status": "queued", "message": "email notification queued"}
+      ]
+    }
+  },
+  {
+    "model": "incidents.incidentreport",
+    "pk": 14,
+    "fields": {
+      "title": "Mobile app config mismatch",
+      "description": "The mobile app is receiving stale config values from the rollout service.",
+      "severity": "high",
+      "service_name": "config-service",
+      "status": "open",
+      "channels": ["console", "sms"],
+      "created_at": "2026-07-14T20:35:00Z",
+      "updated_at": "2026-07-14T20:45:00Z",
+      "broadcast_results": [
+        {"channel": "console", "status": "sent", "message": "logged to console"},
+        {"channel": "sms", "status": "sent", "message": "sms notification queued"}
+      ]
+    }
+  },
+  {
+    "model": "incidents.incidentreport",
+    "pk": 15,
+    "fields": {
+      "title": "Region failover in progress",
+      "description": "A regional failover is underway after an infrastructure event.",
+      "severity": "critical",
+      "service_name": "infrastructure",
+      "status": "acknowledged",
+      "channels": ["console", "email", "sms"],
+      "created_at": "2026-07-15T21:40:00Z",
+      "updated_at": "2026-07-15T21:55:00Z",
+      "broadcast_results": [
+        {"channel": "console", "status": "sent", "message": "logged to console"},
+        {"channel": "email", "status": "queued", "message": "email notification queued"},
+        {"channel": "sms", "status": "sent", "message": "sms notification queued"}
+      ]
+    }
+  }
+]
