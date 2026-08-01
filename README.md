@@ -1,14 +1,20 @@
-# studious-octo-goggles
+# Studious Octo Goggles
+
+## Overview
+
+Studious Octo Goggles is a Django application that runs locally using Docker.
 
 ## Prerequisites
 
-Before getting started, make sure you have the following installed:
+Before getting started, ensure the following tools are installed:
 
 - Docker Desktop: https://www.docker.com/products/docker-desktop/
 - Git: https://git-scm.com/downloads
 - pre-commit: https://pre-commit.com/#install
 
-If you use Homebrew on macOS, you can install pre-commit with:
+### Install pre-commit (macOS)
+
+If you're using Homebrew:
 
 ```bash
 brew install pre-commit
@@ -16,35 +22,99 @@ brew install pre-commit
 
 ## Getting Started
 
-1. Clone the repository:
+### 1. Clone the Repository
 
-   ```bash
-   git clone https://github.com/klhenams/studious-octo-goggles.git
-   cd studious_octo_goggles
-   ```
+```bash
+git clone https://github.com/klhenams/studious-octo-goggles.git
+cd studious-octo-goggles
+```
 
-2. Install and set up pre-commit hooks locally:
+### 2. Install Git Hooks
 
-   ```bash
-   pre-commit install
-   ```
+Install the pre-commit hooks used by the project:
 
-3. Build the Docker images:
+```bash
+pre-commit install
+```
 
-   ```bash
-   docker compose -f docker-compose.local.yml build
-   ```
+### 3. Build Docker Images
 
-4. Start the local environment with Docker:
+```bash
+docker compose -f docker-compose.local.yml build
+```
 
-   ```bash
-   docker compose -f docker-compose.local.yml up
-   ```
+### 4. Start the Development Environment
 
-5. Access the application in your browser at http://localhost:8000
+```bash
+docker compose -f docker-compose.local.yml up
+```
 
-6. If you need a superuser account, run:
+To run the services in the background:
 
-   ```bash
-   docker compose -f docker-compose.local.yml exec django python manage.py createsuperuser
-   ```
+```bash
+docker compose -f docker-compose.local.yml up -d
+```
+
+### 5. Apply Database Migrations
+
+In a new terminal window:
+
+```bash
+docker compose -f docker-compose.local.yml run --rm django python manage.py migrate
+```
+
+### 6. Create a Superuser (Optional)
+
+If you need access to the Django admin site:
+
+```bash
+docker compose -f docker-compose.local.yml run --rm django python manage.py createsuperuser
+```
+
+### 7. Access the Application
+
+Once the containers are running, open:
+
+```
+http://localhost:8000
+```
+
+## Common Management Commands
+
+### Create New Migrations
+
+```bash
+docker compose -f docker-compose.local.yml run --rm django python manage.py makemigrations
+```
+
+### Apply Migrations
+
+```bash
+docker compose -f docker-compose.local.yml run --rm django python manage.py migrate
+```
+
+### Run Tests
+
+```bash
+docker compose -f docker-compose.local.yml run --rm django pytest
+```
+
+### Open a Django Shell
+
+```bash
+docker compose -f docker-compose.local.yml run --rm django python manage.py shell
+```
+
+### Stop the Development Environment
+
+```bash
+docker compose -f docker-compose.local.yml down
+```
+
+## Code Quality
+
+Run all pre-commit checks manually:
+
+```bash
+pre-commit run --all-files
+```
